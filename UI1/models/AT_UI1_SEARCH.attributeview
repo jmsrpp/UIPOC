@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_UI1_SEARCH" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
+  <descriptions defaultDescription="AT_UI1_SEARCH"/>
+  <attributes>
+    <attribute id="CUSTOMER_NAME" order="1" attributeHierarchyActive="false" displayAttribute="false" key="true">
+      <descriptions defaultDescription="Customer Name"/>
+      <searchProperties>
+        <freestyleSearch>true</freestyleSearch>
+        <fuzzySearch>true</fuzzySearch>
+        <fuzzinessThreshold>0.8</fuzzinessThreshold>
+      </searchProperties>
+      <keyMapping schemaName="UI1" columnObjectName="UI1::UI1.Customer" columnName="customerName"/>
+    </attribute>
+    <attribute id="INDUSTRY" order="2" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Industry"/>
+      <searchProperties>
+        <freestyleSearch>true</freestyleSearch>
+        <fuzzySearch>true</fuzzySearch>
+        <fuzzinessThreshold>0.8</fuzzinessThreshold>
+      </searchProperties>
+      <keyMapping schemaName="UI1" columnObjectName="UI1::UI1.Customer" columnName="Industry"/>
+    </attribute>
+    <attribute id="REGION" order="3" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Region"/>
+      <searchProperties>
+        <freestyleSearch>true</freestyleSearch>
+        <fuzzySearch>true</fuzzySearch>
+        <fuzzinessThreshold>0.8</fuzzinessThreshold>
+      </searchProperties>
+      <keyMapping schemaName="UI1" columnObjectName="UI1::UI1.Customer" columnName="Region"/>
+    </attribute>
+    <attribute id="PROJECT_NAME" order="4" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Project Name"/>
+      <keyMapping schemaName="UI1" columnObjectName="UI1::UI1.Project" columnName="projectName"/>
+    </attribute>
+    <attribute id="PROJECT_TYPE" order="5" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Project Type"/>
+      <keyMapping schemaName="UI1" columnObjectName="UI1::UI1.Project" columnName="projectType"/>
+    </attribute>
+    <attribute id="PROJECT_PHASE" order="6" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Project Phase"/>
+      <keyMapping schemaName="UI1" columnObjectName="UI1::UI1.Project" columnName="projectPhase"/>
+    </attribute>
+    <attribute id="START_DATE" order="7" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Start Date"/>
+      <keyMapping schemaName="UI1" columnObjectName="UI1::UI1.Project" columnName="startDate"/>
+    </attribute>
+    <attribute id="END_DATE" order="8" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="End Date"/>
+      <keyMapping schemaName="UI1" columnObjectName="UI1::UI1.Project" columnName="endDate"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <privateDataFoundation>
+    <tableProxies>
+      <tableProxy>
+        <table schemaName="UI1" columnObjectName="UI1::UI1.Customer"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="UI1" columnObjectName="UI1::UI1.Project"/>
+      </tableProxy>
+    </tableProxies>
+    <joins>
+      <join>
+        <leftTable schemaName="UI1" columnObjectName="UI1::UI1.Customer"/>
+        <rightTable schemaName="UI1" columnObjectName="UI1::UI1.Project"/>
+        <leftColumns>
+          <columnName>customerName</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>pProject.customerName</columnName>
+        </rightColumns>
+        <properties cardinality="C1_N" joinOperator="Equal" joinType="referential"/>
+      </join>
+    </joins>
+    <layout>
+      <shapes>
+        <shape modelObjectName="UI1::UI1.Customer" modelObjectNameSpace="UI1" modelObjectType="catalog">
+          <upperLeftCorner x="70" y="30"/>
+        </shape>
+        <shape modelObjectName="UI1::UI1.Project" modelObjectNameSpace="UI1" modelObjectType="catalog">
+          <upperLeftCorner x="291" y="30"/>
+        </shape>
+        <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <hierarchies/>
+</Dimension:dimension>

@@ -1,0 +1,6 @@
+{
+"name" : "UI Search",
+"specXMLURL" : "/UI1/uis/widgets/search.xml" ,
+"description": "Search Widget",
+"icon" : ""
+}

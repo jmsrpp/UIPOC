@@ -1,0 +1,53 @@
+@OData 
+application UI1 {
+	
+//export namespace UI1 {
+		
+
+role poc_admin;
+	
+	export entity Customer accessible by poc_admin {
+	
+	key element customerName : String;
+	element Industry : String;
+	element Region : String;
+	element Projects : association[0..*] to Project via backlink pProject;
+	
+	// count of projects per customer
+	element numProjects = SELECT ONE COUNT(1) as num FROM Projects;
+ 
+	}
+	
+	export entity Project accessible by poc_admin {
+		
+	key element projectID : Integer;
+	element projectName : String;
+	element projectPhase : ProjectPhase;
+	element projectType : ProjectType;
+	element projectDetails : String(1000);
+	element startDate : LocalDate;
+	element endDate : LocalDate;
+	element pProject : association to Customer;
+	element pProgram : association to Program;
+	element CSARole : String;
+	element CSAContact : String;
+	element Revenue : DecimalFloat default 25000;
+	element Cost : DecimalFloat default 10000;
+		
+	}
+	
+	// enum for types
+	export type ProjectPhase accessible by poc_admin : enum { LIVE; IN_PROGRESS; CANCELLED; }
+	export type ProjectType accessible by poc_admin : enum { DEPLOYMENT; POC; RAMP_UP; }
+	
+	export entity Program accessible by poc_admin {
+	
+	key element programName : String;
+	element market : String;
+	element solution : String;
+	element cPrograms : association[0..*] to Project via backlink pProgram;
+	 
+	}
+	
+}
+//}

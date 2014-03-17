@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+  <ModulePrefs title="LS Content">
+  </ModulePrefs>
+  <Content type="html" >
+  <![CDATA[
+  <script>
+   window.location.href = "/sap/bi/launchpad/open?id=532085CEB7F248BFE10000000AA2C076&type=HANALYTIC";
+   </script>
+   ]]>
+  </Content>
+</Module>

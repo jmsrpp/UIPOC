@@ -1,0 +1,8 @@
+{
+  "privileges": [
+    {
+      "name": "AppSiteAccess:UI1",
+      "description": "Access UI1 AppSite"
+    }
+  ]
+}

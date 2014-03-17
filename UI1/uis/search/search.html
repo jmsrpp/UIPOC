@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<title>UI1 Search</title>
+<meta name="description" content="">
+<meta name="author" content="I817520">
+
+<!-- CSS: implied media="all" -->
+<!-- CSS concatenated and minified via ant build script-->
+<link rel="stylesheet" type="text/css" href="/sap/bc/ina/demos/epm/search.css">
+<!-- end CSS-->
+<link rel="shortcut icon" href="/sap/bc/ina/demos/epm/img/favicon.png" />
+
+<script data-main="/sap/bc/ina/uitoolkit/js/main.js" src="/sap/bc/ina/uitoolkit/js/lib/require.js"></script>
+
+<script>
+requirejs(['/sap/bc/ina/demos/epm/server/createFulltextIndex.js'], function   () {
+
+});
+</script>
+
+<!-- create fulltext index -->
+<!-- <script src="server/createFulltextIndex.js"></script> -->
+
+</head>
+
+<body>
+
+  <!--    <header>
+        <div data-sap-widget="header" data-title="UI1 Search" data-helphref="http://help.sap.com/hana_appliance"></div>
+    </header> -->
+
+  <!--    <div class="background">
+    <div data-sap-widget="alert"></div>-->
+
+    <!-- <div data-sap-widget="workarea" data-entityset="J_EPM_PRODUCT" data-schema="SYSTEM" data-aggregationdimension="PRODUCT_ID"> -->
+   <div data-sap-widget="workarea" data-entityset="AT_UI1_SEARCH" data-packagename="UI1.models" data-aggregationdimension="CUSTOMER_NAME">
+        <div class="facetPaneShadow">
+          <div class="facetPane">
+
+            <div class="searchboxframe">
+                <div data-sap-widget="searchbox" data-enablelivesearch="true"></div>
+            </div>
+
+ 			<!--  <div data-sap-widget="workareaitem" data-title="Results" data-source-position="2">-->
+                	
+	                  <div data-sap-widget="resultlist"
+	                         data-maxresultslarge="5" data-maxresultssmall="3" data-responseattributes="CUSTOMER_NAME,INDUSTRY,REGION"
+	                         data-detailwidth="650" data-detailheight="380"
+	                         data-highlightterms="true" data-highlightedattributes="CUSTOMER_NAME,INDUSTRY,REGION"
+	                         data-snippetterms="false" data-snippetedattributes="CUSTOMER_NAME,INDUSTRY,REGION"
+	                         data-opendetailevent="click" data-showdetail="true"
+	                         data-orderby="CUSTOMER_NAME"
+	                         data-resulttemplate="templates/customer.html"
+	                         data-resulttemplate-css="templates/customer.css">
+	                         <!--  data-resulttemplate-small="/sap/bc/ina/demos/epm/templates/product_small.html"
+	                         data-resulttemplate-small-css="/sap/bc/ina/demos/epm/templates/product_small.css"
+	                         data-resulttemplate-detail="/sap/bc/ina/demos/epm/templates/product_detail.html"
+	                         data-resulttemplate-detail-css="/sap/bc/ina/demos/epm/templates/product_detail.css">-->
+	                    </div>
+	                    
+	                    <!--  </div>-->
+            
+         </div> <!--  end of facetPane -->
+        </div> <!--  end of facetPaneShadow -->
+
+        
+                
+                	
+                		
+                
+
+            </div>  <!-- end of workarea div -->
+
+    <div class="clear"></div>
+
+   <!-- </div>  end of background div -->
+</body>
+</html>

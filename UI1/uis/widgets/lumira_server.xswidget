@@ -1,0 +1,6 @@
+{
+"name" : "LS Content",
+"specXMLURL" : "/UI1/uis/widgets/lumira_server.xml" ,
+"description": "HTML5 Visualizations",
+"icon" : ""
+}

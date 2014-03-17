@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="UI1" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <descriptions defaultDescription="UI1"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources>
+    <DataSource id="UI1::UI1.Customer" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="UI1" columnObjectName="UI1::UI1.Customer"/>
+    </DataSource>
+    <DataSource id="UI1::UI1.Project" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="UI1" columnObjectName="UI1::UI1.Project"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+      <viewAttributes>
+        <viewAttribute id="customerName"/>
+        <viewAttribute id="Industry"/>
+        <viewAttribute id="Region"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#UI1::UI1.Customer">
+        <mapping xsi:type="Calculation:AttributeMapping" target="customerName" source="customerName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Industry" source="Industry"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_2">
+      <viewAttributes>
+        <viewAttribute id="projectID"/>
+        <viewAttribute id="projectName"/>
+        <viewAttribute id="projectPhase"/>
+        <viewAttribute id="projectType"/>
+        <viewAttribute id="projectDetails"/>
+        <viewAttribute id="startDate"/>
+        <viewAttribute id="endDate"/>
+        <viewAttribute id="pProject_customerName"/>
+        <viewAttribute id="CSARole"/>
+        <viewAttribute id="CSAContact"/>
+        <viewAttribute aggregationType="sum" id="Revenue"/>
+        <viewAttribute aggregationType="sum" id="Cost"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#UI1::UI1.Project">
+        <mapping xsi:type="Calculation:AttributeMapping" target="projectID" source="projectID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="projectName" source="projectName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="projectPhase" source="projectPhase"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="projectType" source="projectType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="projectDetails" source="projectDetails"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="startDate" source="startDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="endDate" source="endDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="pProject_customerName" source="pProject.customerName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CSARole" source="CSARole"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CSAContact" source="CSAContact"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Revenue" source="Revenue"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Cost" source="Cost"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="inner">
+      <viewAttributes>
+        <viewAttribute id="customerName"/>
+        <viewAttribute id="Industry"/>
+        <viewAttribute id="Region"/>
+        <viewAttribute id="projectID"/>
+        <viewAttribute id="projectName"/>
+        <viewAttribute id="projectPhase"/>
+        <viewAttribute id="projectType"/>
+        <viewAttribute id="projectDetails"/>
+        <viewAttribute id="startDate"/>
+        <viewAttribute id="endDate"/>
+        <viewAttribute id="CSARole"/>
+        <viewAttribute id="CSAContact"/>
+        <viewAttribute id="Revenue"/>
+        <viewAttribute id="Cost"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="FLOAT" id="MARGIN" length="10">
+          <formula>&quot;Revenue&quot;-&quot;Cost&quot;</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#Aggregation_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="customerName" source="customerName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Industry" source="Industry"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+      </input>
+      <input node="#Aggregation_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="projectID" source="projectID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="projectName" source="projectName"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="projectPhase" source="projectPhase"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="projectType" source="projectType"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="projectDetails" source="projectDetails"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="startDate" source="startDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="endDate" source="endDate"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CSARole" source="CSARole"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CSAContact" source="CSAContact"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Revenue" source="Revenue"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Cost" source="Cost"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="customerName" source="pProject_customerName"/>
+      </input>
+      <joinAttribute name="customerName"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Join_1">
+    <attributes>
+      <attribute id="customerName" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Customer"/>
+        <keyMapping columnObjectName="Join_1" columnName="customerName"/>
+      </attribute>
+      <attribute id="Industry" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Industry"/>
+        <keyMapping columnObjectName="Join_1" columnName="Industry"/>
+      </attribute>
+      <attribute id="Region" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Region"/>
+        <keyMapping columnObjectName="Join_1" columnName="Region"/>
+      </attribute>
+      <attribute id="projectID" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Project ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="projectID"/>
+      </attribute>
+      <attribute id="projectName" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Project Name"/>
+        <keyMapping columnObjectName="Join_1" columnName="projectName"/>
+      </attribute>
+      <attribute id="projectPhase" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Project Phase"/>
+        <keyMapping columnObjectName="Join_1" columnName="projectPhase"/>
+      </attribute>
+      <attribute id="projectType" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Project Type"/>
+        <keyMapping columnObjectName="Join_1" columnName="projectType"/>
+      </attribute>
+      <attribute id="projectDetails" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Project Details"/>
+        <keyMapping columnObjectName="Join_1" columnName="projectDetails"/>
+      </attribute>
+      <attribute id="startDate" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Start Date"/>
+        <keyMapping columnObjectName="Join_1" columnName="startDate"/>
+      </attribute>
+      <attribute id="endDate" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="End Date"/>
+        <keyMapping columnObjectName="Join_1" columnName="endDate"/>
+      </attribute>
+      <attribute id="CSARole" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SAP Role"/>
+        <keyMapping columnObjectName="Join_1" columnName="CSARole"/>
+      </attribute>
+      <attribute id="CSAContact" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SAP Contact"/>
+        <keyMapping columnObjectName="Join_1" columnName="CSAContact"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Revenue" order="19" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Revenue"/>
+        <measureMapping columnObjectName="Join_1" columnName="Revenue"/>
+      </measure>
+      <measure id="Cost" order="20" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Cost"/>
+        <measureMapping columnObjectName="Join_1" columnName="Cost"/>
+      </measure>
+      <measure id="MARGIN" order="21" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="MARGIN"/>
+        <measureMapping columnObjectName="Join_1" columnName="MARGIN"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="DAYS_ON_PROJECT" hidden="false" order="13" aggregationType="sum" measureType="simple" datatype="INTEGER">
+        <descriptions defaultDescription="Resource Days"/>
+        <formula>&quot;endDate&quot;-&quot;startDate&quot;</formula>
+      </measure>
+      <measure id="NUM_PROJECTS" hidden="false" order="14" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" datatype="INTEGER">
+        <descriptions defaultDescription="Projects"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="projectID"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+      <measure id="NUM_CUSTOMER" hidden="false" order="15" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" datatype="INTEGER">
+        <descriptions defaultDescription="Customers"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="customerName"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+      <measure id="NUM_REGION" hidden="false" order="16" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" datatype="INTEGER">
+        <descriptions defaultDescription="Regions"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="Region"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+      <measure id="NUM_PHASE" hidden="false" order="17" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" datatype="INTEGER">
+        <descriptions defaultDescription="Projects by Phase"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="projectPhase"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+      <measure id="NUM_TYPE" hidden="false" order="18" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" datatype="INTEGER">
+        <descriptions defaultDescription="Projects by Type"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="projectType"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="30" y="380"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="220" y="380"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="120" y="270"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

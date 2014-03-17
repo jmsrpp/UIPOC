@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+  <ModulePrefs title="LS Content">
+  </ModulePrefs>
+  <Content type="html" >
+  <![CDATA[
+  <script>
+   window.location.href = "/UI1/uis/search/search.html";
+   </script>
+   ]]>
+  </Content>
+</Module>

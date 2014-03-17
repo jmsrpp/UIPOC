@@ -1,0 +1,55 @@
+.customer {
+    margin-left:3px;
+    margin-top:3px;
+    margin-right:3px;
+    margin-bottom:0;
+    padding:3px; 
+    padding-left:3px; 
+    border:5px;
+    background-color:#eeeeee;
+    font-size:150%;
+    text-align:left;
+    border-radius:6px;
+}
+
+.customer:hover {
+    cursor:pointer;
+    background-color: #D4E4FB;   
+}
+
+.customer_img{
+    padding:2px;
+    background-color:#ffffff;
+    border:1px solid #bbbbbb;
+    border-radius:5px;
+}
+
+.customer_img img { 
+    width:70px;
+    height:70px; 
+}
+
+.customer table{
+   margin:0; 
+}
+
+.customer_title {
+   color:#f0ab00; 
+   font-size:100%; 
+   font-weight:bold;
+   white-space:nowrap;
+}
+
+.attributeName {
+   color:#999999; 
+}
+
+.attributeValue {
+   color:#000000;
+   padding: 2px 5px;
+   	line-height:100%;
+}
+
+.margin_big{
+    margin-left:10px;    
+}
